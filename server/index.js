@@ -1,14 +1,22 @@
 const express = require('express');
-const databaseConfig = require('./config/database.js');
-const routesConfig = require('./config/routes.js');
-const authController = require('./controllers/authController.js');
+const app = express();
+//cors is needed
+const CONNECTION_STRING = 'mongodb://127.0.0.1:27017/reactapplication';
+const { mongoose } = require('mongoose');
+// const databaseConfig = require('./config/database.js');
+// const routesConfig = require('./config/routes.js');
 
+const router = require('./config/routes.js');
+//sesion
+const startDB = () => mongoose.connect(CONNECTION_STRING);
 start();
 
 async function start() {
-    const app = express();
-    await databaseConfig(app);
-    routesConfig(app);
+    startDB();
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: false }));
+    app.use(router)
+    // routesConfig(app);
 
-    app.listen(3000, () => console.log('Server listening on port 3000'));
+    app.listen("3030", () => console.log('Server listening on port 3030'));
 }
