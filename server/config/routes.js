@@ -6,4 +6,5 @@ router.get('/', (req, res) => {
     res.json({ message: "Service in operation" })
 });
 router.use('/auth', authController);
+
 module.exports = router;
