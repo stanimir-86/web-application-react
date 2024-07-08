@@ -4,7 +4,10 @@ const emailRegex = /^[a-zA-Z0-9._%+-]{3,}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 const userSchema = new Schema({
     email: {
-        type: String, required: true, unique: true, validate: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: {
             validator: (value) => emailRegex.test(value),
             message: "Invalid emali!",
         }
@@ -17,11 +20,7 @@ const userSchema = new Schema({
         maxlength: [10, 'Username must be at least ten charecters!'],
 
     },
-    hashedPassword: { type: String, required: true },
-    unique: true,
-    minlength: [3, 'Username must be at least three charecters!'],
-    maxlength: [10, 'Username must be at least ten charecters!'],
-
+    hashedPassword: { type: String, required: true, unique: true },
 });
 
 userSchema.index({ email: 1 }, {
