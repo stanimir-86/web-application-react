@@ -1,5 +1,9 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const {
+    Schema,
+    model,
+    Types: { ObjectId },
+} = require('mongoose');
+
 
 const SunglassesSchema = new Schema({
     brand: {
@@ -82,8 +86,10 @@ const SunglassesSchema = new Schema({
         type: Date,
         default: Date.now,
     },
+    _ownerId: { type: ObjectId, ref: "User", required: true },
+    likes: { type: Array, default: [], required: false },
 });
 
-const Sunglasses = mongoose.model('Sunglasses', SunglassesSchema);
+const Sunglasses = model('Sunglasses', SunglassesSchema);
 
 module.exports = Sunglasses;
