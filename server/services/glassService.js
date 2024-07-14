@@ -16,11 +16,25 @@ async function getById(id) {
 async function create(data) {
     return Sunglasses.create(data);
 }
+async function getMyLikes(id) {
+    const glasses = await Sunglasses.find({});
+    let result = [];
+    glasses.map(x => {
+        if (!!(x.likes.includes(id))) {
+            result.push(x);
+        }
+    });
+    return result;
+}
+
+a
 
 module.exports = {
     getAll,
     getByUserId,
     getById,
     create,
-    
+    getMyLikes,
+
+
 };
