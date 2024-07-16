@@ -1,6 +1,6 @@
+const router = require('express').Router();
 const authController = require("../controllers/authController.js");
 const sunglassController = require("../controllers/sunglassController.js");
-const router = require('express').Router();
 
 router.get('/', (req, res) => {
 
