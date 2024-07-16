@@ -4,15 +4,19 @@ const authController = require('express').Router();
 
 
 authController.post('/register', async (req, res) => {
+    
     try {
         if (req.body.password !== req.body.repass) {
+            
+
             throw new error('Password dismatch!');
         }
         const token = await register(
             req.body.email,
             req.body.username,
-            req.password,
+            req.body.password,
         )
+        
         if (!token) {
             throw new error('Unable to register with this credential!!!');
         }
@@ -29,7 +33,7 @@ authController.post('/login', async (req, res) => {
     try {
         const token = await login(req.body.email, req.body.password);
         if (!token) {
-            throw new error('Unable to register with this credential!!!');
+            throw new error('Unable to login with this credential!!!');
         }
         res.status(201).json(token);
         res.end();
