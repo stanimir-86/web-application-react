@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors=require('./middlewares/cors.js');
-const CONNECTION_STRING = 'mongodb://127.0.0.1:27017/reactapplication';
+const CONNECTION_STRING = 'mongodb://127.0.0.1:27017/sunglasses';
 const { mongoose } = require('mongoose');
 const router = require('./config/routes.js');
 const session = require('./middlewares/session.js');
