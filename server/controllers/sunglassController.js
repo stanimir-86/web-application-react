@@ -1,5 +1,7 @@
 const sunglassController = require('express').Router();
 
+const validateSunglassData = require('../middlewares/validationSunglassData.js');
+const Sunglasses = require('../models/Sunglasses.js');
 const { create } = require('../models/Sunglasses.js');
 const { getAll, getByUserId, getMyLikes, getById, update, deleteById, likeSunglasses, deleteLikes } = require('../services/glassService.js');
 
@@ -18,15 +20,15 @@ sunglassController.get('/my-glasses', async (req, res) => {
     res.status(200).json(glasses);
 });
 
-// sunglassController('/my-likes', async (req, res) => {
-//     try {
-//         const glasses = await getMyLikes(req.user._id);
-//         res.status(200).json(glasses);
-//     } catch (error) {
-//         console.log(error);
-//         res.status(400).json({ error: error.message });
-//     }
-// });
+sunglassController('/my-likes', async (req, res) => {
+    try {
+        const glasses = await getMyLikes(req.user._id);
+        res.status(200).json(glasses);
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ error: error.message });
+    }
+});
 
 sunglassController.get('/:id', async (req, res) => {
     try {
@@ -40,16 +42,19 @@ sunglassController.get('/:id', async (req, res) => {
     }
 
 });
-sunglassController.post('/', async (req, res) => {
+sunglassController.post('/', validateSunglassData, async (req, res) => {
     try {
-        const data = Object.assign({ _ownerId: req.user._id }, req.body)
-        const glasses = await create(data);
+
+        
+        const data = Object.assign({ _ownerId: req.user._id }, req.body);
+
+        const glasses = await Sunglasses.create(data);
         res.json(glasses);
     } catch (error) {
         console.log(error);
         res.status(400).json({ error: error.message });
     }
-    res.end();
+    // res.end();
 });
 sunglassController.put('/:id', async (req, res) => {
     try {
