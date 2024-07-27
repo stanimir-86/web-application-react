@@ -20,15 +20,15 @@ sunglassController.get('/my-glasses', async (req, res) => {
     res.status(200).json(glasses);
 });
 
-sunglassController('/my-likes', async (req, res) => {
-    try {
-        const glasses = await getMyLikes(req.user._id);
-        res.status(200).json(glasses);
-    } catch (error) {
-        console.log(error);
-        res.status(400).json({ error: error.message });
-    }
-});
+// sunglassController('/my-likes', async (req, res) => {
+//     try {
+//         const glasses = await getMyLikes(req.user._id);
+//         res.status(200).json(glasses);
+//     } catch (error) {
+//         console.log(error);
+//         res.status(400).json({ error: error.message });
+//     }
+// });
 
 sunglassController.get('/:id', async (req, res) => {
     try {
