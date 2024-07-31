@@ -1,4 +1,4 @@
-
+import { Link } from 'react-router-dom'
 
 
 export default function Header() {
@@ -6,24 +6,24 @@ export default function Header() {
     return (
         <header>
             {/* Navigation */}
-            <a id="logo" href="#">
+            <Link id="logo" to="/">
                 <img id="logo" src="./images/modern-sunglasses-logo-vector-9786496.jpg" alt="img" />
-            </a>
+            </Link>
             <nav>
                 <div>
-                    <a href="#">Market</a>
+                    <Link to="/dashboard">Market</Link>
                 </div>
 
                 {/* Logged-in users */}
                 <div className="user">
-                    <a href="#">Sell</a>
-                    <a href="#">Logout</a>
+                    <Link to="/create">Sell</Link>
+                    <Link to="/logout">Logout</Link>
                 </div>
 
                 {/* Guest users */}
                 <div className="guest">
-                    <a href="#">Login</a>
-                    <a href="#">Register</a>
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
                 </div>
             </nav>
         </header>
