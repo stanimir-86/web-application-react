@@ -9,3 +9,12 @@ export const getAll = async () => {
     // const sunglasses = Object.values(result);//if I have object in object data format
     // return sunglasses;
 }
+export const getOne = (sunglassesId) => request.get(`${BASE_URL}/${sunglassesId}`);
+
+const sunglassesAPI = {
+    getAll,
+    getOne,
+};
+
+export default sunglassesAPI;
+
