@@ -1,18 +1,32 @@
+import { useEffect, useState } from "react"
+
+import { useParams } from "react-router-dom";
+import sunglassesAPI from "../../api/sunglasess-api.js";
 export default function Details() {
+
+    const [sunglasses, setSunglasses] = useState({});
+    const { sunglassesId } = useParams();
+
+    useEffect(() => {
+        (async () => {
+            const result = await sunglassesAPI.getOne(sunglassesId);
+            setSunglasses(result);
+        })();
+    });
     return (
         <section id="details">
             <div id="details-wrapper">
                 <div>
-                    <img id="details-img" src="./images/drone.png" alt="example1" />
-                    <p id="details-title">Drone</p>
+                    <img id="details-img" src={sunglasses.images} alt="example1" />
+                    <p id="details-title">{sunglasses.brand}</p>
                 </div>
                 <div id="info-wrapper">
                     <div id="details-description">
-                        <p className="details-price">Price: €1200</p>
-                        <p className="details-availability">Mass-Market Retail, Online Marketplace</p>
-                        <p className="type">Type: Advanced Surveillance</p>
+                        <p className="details-price">Price: €{sunglasses.price}</p>
+                        <p className="details-availability">{sunglasses.description}</p>
+                        <p className="type">Type: {sunglasses.brand}</p>
                         <p id="item-description">
-                            The Sky Seeker is an invaluable tool for exploration and surveillance. Its compact size and maneuverability make it ideal for navigating tight spaces and gathering data, while its high-resolution cameras provide clear images even in low-light conditions. With the Sky Seeker, you can stay ahead of the curve in the ever-changing world of cyberpunk.
+                            {sunglasses.description}
                         </p>
                     </div>
                     {/* Edit and Delete are only for creator */}
