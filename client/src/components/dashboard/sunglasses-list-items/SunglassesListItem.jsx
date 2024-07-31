@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function SunglassesItem({
     _id,
     images,
@@ -25,9 +27,9 @@ export default function SunglassesItem({
                 </p>
                 <p className="type">Type: {brand}</p>
             </div>
-            <a className="details-btn" href="#">
+            <Link className="details-btn" to={`/sunglasses/${_id}/details`}>
                 Uncover More
-            </a>
+            </Link>
         </div>
 
     )
