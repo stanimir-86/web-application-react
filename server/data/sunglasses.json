@@ -1,0 +1,86 @@
+[
+    {
+        "_id": "669e10b013f87cd744955f35",
+        "brand": "Ray-Ban",
+        "model": "Aviator",
+        "price": 150,
+        "color": "Black",
+        "lensMaterial": "Glass",
+        "frameMaterial": "Metal",
+        "polarized": false,
+        "stock": 50,
+        "description": "Classic aviator sunglasses",
+        "images": [
+            {
+                "url": "http://example.com/image1.jpg",
+                "altText": "Front view",
+                "_id": "669e10b013f87cd744955f36"
+            },
+            {
+                "url": "http://example.com/image2.jpg",
+                "altText": "Side view",
+                "_id": "669e10b013f87cd744955f37"
+            }
+        ],
+        "_ownerId": "6696a8fb15a9558bf0e2fcf6",
+        "likes": [],
+        "dateAdded": "2024-07-22T07:56:32.122Z",
+        "__v": 0
+    },
+    {
+        "_id": "669e16c234554f98ce39295f",
+        "brand": "Carrera",
+        "model": "Uptown",
+        "price": 120,
+        "color": "Black",
+        "lensMaterial": "Glass",
+        "frameMaterial": "Plastic",
+        "polarized": false,
+        "stock": 40,
+        "description": "Classic uptown sunglasses",
+        "images": [
+            {
+                "url": "http://example.com/image1.jpg",
+                "altText": "Front view",
+                "_id": "669e16c234554f98ce392960"
+            },
+            {
+                "url": "https://tse3.mm.bing.net/th?id=OIP.rYtkWwiznsOH-qiTCA7aOAHaF7&pid=Api&P=0&h=220",
+                "altText": "Side view",
+                "_id": "669e16c234554f98ce392961"
+            }
+        ],
+        "_ownerId": "6696a8fb15a9558bf0e2fcf6",
+        "likes": [],
+        "dateAdded": "2024-07-22T08:22:26.598Z",
+        "__v": 0
+    },
+    {
+        "_id": "66aa2cddb2c2ebdcc920b703",
+        "brand": "Carrera",
+        "model": "Uptown",
+        "price": 120,
+        "color": "Black",
+        "lensMaterial": "Glass",
+        "frameMaterial": "Plastic",
+        "polarized": false,
+        "stock": 40,
+        "description": "Classic uptown sunglasses",
+        "images": [
+            {
+                "url": "http://example.com/image1.jpg",
+                "altText": "Front view",
+                "_id": "66aa2cddb2c2ebdcc920b704"
+            },
+            {
+                "url": "https://tse3.mm.bing.net/th?id=OIP.rYtkWwiznsOH-qiTCA7aOAHaF7&pid=Api&P=0&h=220",
+                "altText": "Side view",
+                "_id": "66aa2cddb2c2ebdcc920b705"
+            }
+        ],
+        "_ownerId": "6696a8fb15a9558bf0e2fcf6",
+        "likes": [],
+        "dateAdded": "2024-07-31T12:23:57.066Z",
+        "__v": 0
+    }
+]
