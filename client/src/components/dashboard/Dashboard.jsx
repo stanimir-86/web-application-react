@@ -17,10 +17,10 @@ export default function Dashboard() {
     return (
 
         <section id="dashboard">
-            {sunglasses.map(x => <SunglassesItem key={x._id} {...x} />)}
-
-
-
+            {sunglasses.length > 0
+                ? sunglasses.map(x => <SunglassesItem key={x._id} {...x} />)
+                : <h3 className="item">No Sunglasses yet</h3>
+            }
         </section>
 
     )
