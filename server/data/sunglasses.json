@@ -12,12 +12,12 @@
         "description": "Classic aviator sunglasses",
         "images": [
             {
-                "url": "http://example.com/image1.jpg",
+                "url": "https://img.eobuwie.cloud/eob_product_660w_880h(5/3/8/f/538f8441889282e527cfb41531441a0c8da0d58f_0000208600187_01_wj_1.jpg,webp)/slnchevi-ochila-ray-ban-clubmaster-0rb3016-1305b1-black.webp",
                 "altText": "Front view",
                 "_id": "669e10b013f87cd744955f36"
             },
             {
-                "url": "http://example.com/image2.jpg",
+                "url": "https://img.eobuwie.cloud/eob_product_660w_880h(6/1/c/c/61ccd7c7fa943f3d3673abcb3507d5172512d2ac_0000208600187_02_wj_1.jpg,webp)/slnchevi-ochila-ray-ban-clubmaster-0rb3016-1305b1-black.webp",
                 "altText": "Side view",
                 "_id": "669e10b013f87cd744955f37"
             }
@@ -40,7 +40,7 @@
         "description": "Classic uptown sunglasses",
         "images": [
             {
-                "url": "http://example.com/image1.jpg",
+                "url": "https://img2.ans-media.com/i/540x813/AA00-OKM0HA-55X_F2.jpg@webp?v=1709300786",
                 "altText": "Front view",
                 "_id": "669e16c234554f98ce392960"
             },
@@ -68,7 +68,7 @@
         "description": "Classic uptown sunglasses",
         "images": [
             {
-                "url": "http://example.com/image1.jpg",
+                "url": "https://tse3.mm.bing.net/th?id=OIP.rYtkWwiznsOH-qiTCA7aOAHaF7&pid=Api&P=0&h=220",
                 "altText": "Front view",
                 "_id": "66aa2cddb2c2ebdcc920b704"
             },
@@ -81,6 +81,34 @@
         "_ownerId": "6696a8fb15a9558bf0e2fcf6",
         "likes": [],
         "dateAdded": "2024-07-31T12:23:57.066Z",
+        "__v": 0
+    },
+    {
+        "_id": "66aa50ae7808906327cd4d66",
+        "brand": "Furla",
+        "model": "Premium Lady",
+        "price": 370,
+        "color": "Black",
+        "lensMaterial": "Glass",
+        "frameMaterial": "Metal",
+        "polarized": false,
+        "stock": 30,
+        "description": "Everyday sunglasses",
+        "images": [
+            {
+                "url": "https://img.eobuwie.cloud/eob_product_528w_704h(d/4/0/d/d40d5b57992186f0fa897a95cac6d255c6cdd429_20_8050597494227_DJ.jpg,webp)/slnchevi-ochila-furla-sunglasses-sfu786-wd00113-mt0000-o6000-4401-cheren-8050597494227.webp",
+                "altText": "Front view",
+                "_id": "66aa50ae7808906327cd4d67"
+            },
+            {
+                "url": "https://img.eobuwie.cloud/eob_product_660w_880h(4/b/1/8/4b18ee58db17847a4c4bd703f10eec2ad407a006_22_8050597494227_DJ.jpg,webp)/slnchevi-ochila-furla-sunglasses-sfu786-wd00113-mt0000-o6000-4401-cheren-8050597494227.webp",
+                "altText": "Side view",
+                "_id": "66aa50ae7808906327cd4d68"
+            }
+        ],
+        "_ownerId": "6696a8fb15a9558bf0e2fcf6",
+        "likes": [],
+        "dateAdded": "2024-07-31T14:56:46.060Z",
         "__v": 0
     }
 ]
