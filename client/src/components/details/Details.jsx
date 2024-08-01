@@ -12,7 +12,7 @@ export default function Details() {
             const result = await sunglassesAPI.getOne(sunglassesId);
             setSunglasses(result);
         })();
-    });
+    }, []);
     return (
         <section id="details">
             <div id="details-wrapper">
