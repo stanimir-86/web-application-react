@@ -2,9 +2,12 @@ import { useEffect, useState } from "react"
 
 import { useParams } from "react-router-dom";
 import sunglassesAPI from "../../api/sunglasess-api.js";
+import commentsApi from "../../api/comments-api.js";
 export default function Details() {
 
     const [sunglasses, setSunglasses] = useState({});
+    const [username, setUsername] = useState('');
+    const [newComment, setNewComment] = useState('');
     const { sunglassesId } = useParams();
 
     useEffect(() => {
@@ -13,6 +16,24 @@ export default function Details() {
             setSunglasses(result);
         })();
     }, []);
+
+    const commentSubmithandler = async (e) => {
+        e.preventDefault();
+
+        const resultComment = await commentsApi.create(sunglassesId, username, newComment)
+
+        setSunglasses(oldState => ({
+            ...prevState,
+            newComment: {
+                ...prevState.newComment,
+                [resultComment._id]: resultComment,
+            }
+        }));
+
+        setUsername('');
+        setNewComment('');
+
+    }
     return (
         <section id="details">
             <div id="details-wrapper">
@@ -35,7 +56,41 @@ export default function Details() {
                         <a href="" id="delete-btn">Delete</a>
                     </div>
                 </div>
+
+                <div className="item">
+                    <h2>Comments:</h2>
+                    <ul  >
+                        {Object.keys(sunglasses.newComment || {}).length > 0
+                            ? Object.values(sunglasses.newComment).map(x => (
+                                <li key={newComment._id} >
+                                    <p id="item-description">{newComment.username}:{x.text}</p>
+                                </li>
+                            ))
+                            : <p id="item-description" >No comments.</p>
+                        }
+                    </ul>
+                </div>
+                <article className="item">
+                    <label className="item-info" >Add new comment</label>
+                    <form className="item-info" onSubmit={commentSubmithandler} >
+                        <input className="details-availability"
+                            type="text"
+                            placeholder="Name"
+                            name="username"
+                            onChange={(e) => setUsername(e.target.value)}
+                            value={username}
+                        />
+                        <textarea className="details-availability"
+                            name="comment"
+                            placeholder="Commnet..."
+                            onChange={(e) => setNewComment(e.target.value)}
+                            value={newComment}
+
+                        ></textarea>
+                        <input className="details-btn" type="submit" value='Add Comment' />
+                    </form>
+                </article>
             </div>
-        </section>
+        </section >
     )
 }
