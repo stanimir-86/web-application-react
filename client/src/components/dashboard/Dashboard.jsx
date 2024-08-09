@@ -1,16 +1,10 @@
-import { useEffect, useState } from 'react'
-import * as sunglassesAPI from '../../api/sunglasess-api.js'
+import { useGetAllSunglasses } from '../../hooks/use-sunglasses.js';
 import SunglassesItem from './sunglasses-list-items/SunglassesListItem.jsx';
 
 
+
 export default function Dashboard() {
-
-    const [sunglasses, setSunglasses] = useState([]);
-
-    useEffect(() => {
-        sunglassesAPI.getAll()
-            .then(result => setSunglasses(result));
-    }, [])
+    const [sunglasses] = useGetAllSunglasses()
     return (
 
         <section id="dashboard">
