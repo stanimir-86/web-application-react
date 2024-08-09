@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react"
-
+import { useState } from "react"
 import { useParams } from "react-router-dom";
-import sunglassesAPI from "../../api/sunglasess-api.js";
-import commentsApi from "../../api/comments-api.js";
-export default function Details() {
 
-    const [sunglasses, setSunglasses] = useState({});
+import commentsApi from "../../api/comments-api.js";
+import { useGetOneSunglasses } from "../../hooks/use-sunglasses.js";
+
+export default function Details() {
+    const { sunglassesId } = useParams();
+    const [sunglasses, setSunglasses] = useGetOneSunglasses(sunglassesId);
+
     const [username, setUsername] = useState('');
     const [newComment, setNewComment] = useState('');
-    const { sunglassesId } = useParams();
 
-    useEffect(() => {
-        (async () => {
-            const result = await sunglassesAPI.getOne(sunglassesId);
-            setSunglasses(result);
-        })();
-    }, []);
+
 
     const commentSubmithandler = async (e) => {
         e.preventDefault();

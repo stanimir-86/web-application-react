@@ -11,3 +11,16 @@ export function useGetAllSunglasses() {
 
     return [sunglasses, setSunglasses];
 }
+
+export function useGetOneSunglasses(sunglassesId) {
+    const [sunglasses, setSunglasses] = useState({});
+
+    useEffect(() => {
+        (async () => {
+            const result = await sunglassesAPI.getOne(sunglassesId);
+            setSunglasses(result);
+        })();
+    }, [sunglassesId]);
+    return [sunglasses, setSunglasses];
+
+}
