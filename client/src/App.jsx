@@ -1,3 +1,4 @@
+import { useState } from 'react';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -12,27 +13,42 @@ import Register from "./components/register/Register.jsx";
 import Login from "./components/login/Login.jsx";
 import Notifications from "./components/notifications/Notifications.jsx";
 import Footer from "./components/footer/Footer.jsx";
+import { AuthContext } from './contexts/AuthContext.js';
 
 function App() {
+  const [authState, setAuthState] = useState({});
+
+  const chaneAuthState = (state) => {
+    setAuthState(state);
+  }
+  const contextData = {
+    email: authState.email,
+    accesssToken: authState.accesssToken,
+    isAuthenticated: !!authState.email,
+    chaneAuthState,
+  };
+
   return (
     <Router>
-      <Notifications />
-      <div id="wrapper">
-        <Header />
-        <main id="main-element">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/sunglasses/:sunglassesId/details" element={<Details />} />
-            <Route path="/create" element={<Create />} />
-            <Route path="/edit" element={<Edit />} />
-          </Routes>
-        </main>
-      </div>
-      <Footer />
-    </Router>
+        <AuthContext.Provider value={contextData}>
+        <Notifications />
+        <div id="wrapper">
+          <Header />
+          <main id="main-element">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/sunglasses/:sunglassesId/details" element={<Details />} />
+              <Route path="/create" element={<Create />} />
+              <Route path="/edit" element={<Edit />} />
+            </Routes>
+          </main>
+        </div>
+        <Footer />
+    </AuthContext.Provider>
+      </Router>
   );
 }
 
