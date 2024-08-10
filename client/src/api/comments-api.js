@@ -11,7 +11,9 @@ const getAll = async (sunglassesId) => {
     return comments;
 
 }
-export default {
+const comentsAPI = {
     create,
     getAll,
 }
+
+export default comentsAPI;
