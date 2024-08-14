@@ -6,7 +6,7 @@ async function requester(method, url, data) {
     if (accessToken) {
         options.headers = {
             ...options.headers,
-            'Authorization': `Bearer ${accessToken}`,
+            'X-Authorization': accessToken,
         }
     }
 
