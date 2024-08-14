@@ -6,7 +6,7 @@ const JWT_SECRET = 'dfjdfj45drdfhk!@tsrer';
 
 async function register(email, password) {
 
-    
+
 
     const existing = await User.findOne({ email })
 
@@ -29,6 +29,9 @@ async function register(email, password) {
 
 async function login(email, password) {
     const user = await User.findOne({ email });
+    console.log('32 roll userservice' + user);
+    console.log('33 roll userservice' + email);
+
 
     if (!user) {
         throw new Error('Invalid email or password!');
@@ -41,13 +44,19 @@ async function login(email, password) {
 };
 
 function createSesion(user) {
+    let userId = (user._id).toString();
+    console.log('48 roll userservice' + user);
+
     const payload = {
-        _id: user._id,
+        _id: userId,
         email: user.email,
     };
 
+    console.log("row 55 user service" + user.email);
+    console.log("rol 56" + jwt.sign(payload, JWT_SECRET));
+
     return {
-        _id: user._id,
+        _id: userId,
         email: user.email,
         accesToken: jwt.sign(payload, JWT_SECRET),
     }
