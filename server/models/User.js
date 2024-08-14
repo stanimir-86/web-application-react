@@ -12,14 +12,14 @@ const userSchema = new Schema({
             message: "Invalid emali!",
         }
     },
-    username: {
-        type: String,
-        required: true,
-        unique: true,
-        minlength: [3, 'Username must be at least three charecters!'],
-        maxlength: [10, 'Username must be at least ten charecters!'],
+    // username: {
+    //     type: String,
+    //     required: true,
+    //     unique: true,
+    //     minlength: [3, 'Username must be at least three charecters!'],
+    //     maxlength: [10, 'Username must be at least ten charecters!'],
 
-    },
+    // },
     hashedPassword: { type: String, required: true, unique: true },
 });
 

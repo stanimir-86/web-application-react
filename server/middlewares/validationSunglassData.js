@@ -1,10 +1,9 @@
 const validateSunglassData = (req, res, next) => {
-    const { brand, model, price, color, lensMaterial, frameMaterial, stock } = req.body;
+    const { brand, model, price, color, description, images, } = req.body;
 
-    if (!brand || !model || price === undefined || !color || !lensMaterial || !frameMaterial
-        || stock === undefined
+    if (!brand || !model || price === undefined || !images || !color || !description
     ) {
-        return res.stastus(400).json({ error: 'Missing required fields' });
+        return res.status(400).json({ error: 'Invalid data' });
     }
     next();
 }

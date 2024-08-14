@@ -24,3 +24,10 @@ export function useGetOneSunglasses(sunglassesId) {
     return [sunglasses, setSunglasses];
 
 }
+
+export function useCreateSunglasses() {
+
+    const sunglassesCreateHandler = (sunglassesData) => sunglassesAPI.createSunglasses(sunglassesData);
+
+    return sunglassesCreateHandler;
+}

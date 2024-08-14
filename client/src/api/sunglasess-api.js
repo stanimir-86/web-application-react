@@ -1,5 +1,5 @@
 
-import * as request from './requester.js';
+import requester, * as request from './requester.js';
 
 const BASE_URL = 'http://localhost:3030/sunglasses';
 
@@ -11,9 +11,12 @@ export const getAll = async () => {
 }
 export const getOne = (sunglassesId) => request.get(`${BASE_URL}/${sunglassesId}`);
 
+export const createSunglasses = (sunglassesData) => request.post(`${BASE_URL}`, sunglassesData);
+
 const sunglassesAPI = {
     getAll,
     getOne,
+    createSunglasses,
 };
 
 export default sunglassesAPI;

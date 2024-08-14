@@ -2,10 +2,10 @@ import { createContext } from "react";
 
 
 export const AuthContext = createContext({
-
+    userId: '',
     email: '',
     accesssToken: '',
     isAuthenticated: false,
-    chaneAuthState: (authState = {}) => null,
+    changeAuthState: (authState = {}) => null,
 });
 

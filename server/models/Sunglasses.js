@@ -28,38 +28,38 @@ const SunglassesSchema = new Schema({
         required: [true, 'Color is required'],
         trim: true,
     },
-    lensMaterial: {
-        type: String,
-        required: [true, 'Lens material is required'],
-        trim: true,
-    },
-    frameMaterial: {
-        type: String,
-        required: [true, 'Frame material is required'],
-        trim: true,
-    },
-    polarized: {
-        type: Boolean,
-        default: false,
-    },
-    uvProtection: {
-        type: Number,
-        min: [0, 'UV protection must be between 0 and 100'],
-        max: [100, 'UV protection must be between 0 and 100'],
-        validate: {
-            validator: Number.isInteger,
-            message: '{VALUE} is not an integer value',
-        },
-    },
-    stock: {
-        type: Number,
-        required: [true, 'Stock is required'],
-        min: [0, 'Stock must be a positive number'],
-        validate: {
-            validator: Number.isInteger,
-            message: '{VALUE} is not an integer value',
-        },
-    },
+    // lensMaterial: {
+    //     type: String,
+    //     required: [true, 'Lens material is required'],
+    //     trim: true,
+    // },
+    // frameMaterial: {
+    //     type: String,
+    //     required: [true, 'Frame material is required'],
+    //     trim: true,
+    // },
+    // polarized: {
+    //     type: Boolean,
+    //     default: false,
+    // },
+    // uvProtection: {
+    //     type: Number,
+    //     min: [0, 'UV protection must be between 0 and 100'],
+    //     max: [100, 'UV protection must be between 0 and 100'],
+    //     validate: {
+    //         validator: Number.isInteger,
+    //         message: '{VALUE} is not an integer value',
+    //     },
+    // },
+    // stock: {
+    //     type: Number,
+    //     required: [true, 'Stock is required'],
+    //     min: [0, 'Stock must be a positive number'],
+    //     validate: {
+    //         validator: Number.isInteger,
+    //         message: '{VALUE} is not an integer value',
+    //     },
+    // },
     description: {
         type: String,
         trim: true,

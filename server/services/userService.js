@@ -4,9 +4,9 @@ const User = require('../models/User.js');
 
 const JWT_SECRET = 'dfjdfj45drdfhk!@tsrer';
 
-async function register(email, username, password) {
+async function register(email, password) {
 
-    console.log(email, username, password);
+    
 
     const existing = await User.findOne({ email })
 
@@ -18,7 +18,7 @@ async function register(email, username, password) {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
-        username,
+
         email,
         hashedPassword
     });
@@ -43,13 +43,11 @@ async function login(email, password) {
 function createSesion(user) {
     const payload = {
         _id: user._id,
-        username: user.username,
         email: user.email,
     };
 
     return {
         _id: user._id,
-        username: user.username,
         email: user.email,
         accesToken: jwt.sign(payload, JWT_SECRET),
     }

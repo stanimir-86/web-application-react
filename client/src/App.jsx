@@ -18,19 +18,22 @@ import { AuthContext } from './contexts/AuthContext.js';
 function App() {
   const [authState, setAuthState] = useState({});
 
-  const chaneAuthState = (state) => {
+  const changeAuthState = (state) => {
+    localStorage.setItem('accessToken', state.accesssToken);
+
     setAuthState(state);
   }
   const contextData = {
+    userId: authState._id,
     email: authState.email,
     accesssToken: authState.accesssToken,
     isAuthenticated: !!authState.email,
-    chaneAuthState,
+    changeAuthState,
   };
 
   return (
     <Router>
-        <AuthContext.Provider value={contextData}>
+      <AuthContext.Provider value={contextData}>
         <Notifications />
         <div id="wrapper">
           <Header />
@@ -47,8 +50,8 @@ function App() {
           </main>
         </div>
         <Footer />
-    </AuthContext.Provider>
-      </Router>
+      </AuthContext.Provider>
+    </Router>
   );
 }
 
