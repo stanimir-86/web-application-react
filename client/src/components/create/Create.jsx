@@ -34,7 +34,7 @@ export default function Create() {
                 <h2>Share Your item</h2>
                 <form className="create-form" onSubmit={submitHandler}>
                     <label htmlFor="brand"></label>
-                    <input type="text" name="brand" id="item" value={values.brand} onChange={changeHnadler} placeholder="Item" />
+                    <input type="text" name="brand" id="item" value={values.brand} onChange={changeHnadler} placeholder="Brand" />
                     <input type="text" name="images" id="item-image" value={values.images} onChange={changeHnadler} placeholder="Your sunglasses images" />
                     <input type="text" name="price" id="price" value={values.price} onChange={changeHnadler} placeholder="Price in Euro" />
                     <input type="text" name="color" id="availability" value={values.color} onChange={changeHnadler} placeholder="Color Information" />

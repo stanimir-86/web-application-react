@@ -1,41 +1,45 @@
 async function requester(method, url, data) {
-
-    const options = {};
-
+    const options = {
+        method,
+        headers: {}
+    };
+    // const options = {};
     const accessToken = localStorage.getItem('accessToken');
+
     if (accessToken) {
-        options.headers = {
-            ...options.headers,
-            'X-Authorization': accessToken,
-        }
+        options.headers['Authorization'] = `Bearer ${accessToken}`;
+        // options.headers = {
+        //     ...options.headers,
+        //     'X-Authorization': accessToken,
+        // }
     }
+
 
     if (method !== "GET") {
         options.method = method;
     }
     if (data) {
-        options.headers = {
-            ...options.headers,
-            'Content-Type': 'application/json'
-        };
+        // options.headers = {
+        //     ...options.headers,
+        //     'Content-Type': 'application/json'
+        // };
 
-
+        options.headers['Content-Type'] = 'application/json';
         options.body = JSON.stringify(data);
     }
 
-    // console.log("Sending request with options:", options);
-    const response = await fetch(url, options);
-    const result = await response.json();
-
-    if (!response.ok) {
-        console.log("Error response from server:", result);
-        throw result;
-
+    try {
+        const response = await fetch(url, options);
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Error response from server:", errorData);
+            throw new Error(errorData.message || 'Something went wrong');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Network or server error:', error);
+        throw error;
     }
-
-    return result;
-
-
 };
 
 export const get = requester.bind(null, 'GET');
