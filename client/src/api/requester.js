@@ -1,17 +1,15 @@
+import { getAccessToken } from "../utils/authUtils.js";
+
 async function requester(method, url, data) {
-    const options = {
-        method,
-        headers: {}
-    };
-    // const options = {};
-    const accessToken = localStorage.getItem('accessToken');
+
+    const options = {};
+    const accessToken = getAccessToken();
 
     if (accessToken) {
-        options.headers['Authorization'] = `Bearer ${accessToken}`;
-        // options.headers = {
-        //     ...options.headers,
-        //     'X-Authorization': accessToken,
-        // }
+        options.headers = {
+            ...options.headers,
+            'X-Authorization': accessToken,
+        }
     }
 
 
@@ -19,31 +17,28 @@ async function requester(method, url, data) {
         options.method = method;
     }
     if (data) {
-        // options.headers = {
-        //     ...options.headers,
-        //     'Content-Type': 'application/json'
-        // };
-
-        options.headers['Content-Type'] = 'application/json';
+        options.headers = {
+            ...options.headers,
+            'Content-Type': 'application/json'
+        };
         options.body = JSON.stringify(data);
     }
 
-    try {
-        const response = await fetch(url, options);
-        if (response.status === 204) {
-            return
-        }
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            console.error("Error response from server:", errorData);
-            throw new Error(errorData.message || 'Something went wrong');
-        }
-        return await response.json();
-    } catch (error) {
-        console.error('Network or server error:', error);
-        throw error;
+    const response = await fetch(url, options);
+
+
+    if (response.status === 204) {
+        return;
     }
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        throw result
+    }
+    return result;
+
 };
 
 export const get = requester.bind(null, 'GET');
