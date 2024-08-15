@@ -14,6 +14,7 @@ import Login from "./components/login/Login.jsx";
 import Notifications from "./components/notifications/Notifications.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import { AuthContextProvider } from './contexts/AuthContext.jsx';
+import Logout from './components/logout/Logout.jsx';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/logout" element={<Logout />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/sunglasses/:sunglassesId/details" element={<Details />} />
               <Route path="/create" element={<Create />} />
