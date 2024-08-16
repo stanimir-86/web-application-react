@@ -14,9 +14,14 @@ export default function Details() {
     const createComment = useCreateComments();
     const [sunglasses] = useGetOneSunglasses(sunglassesId);
     const { isAuthenticated } = useAuthContext();
-    const { changeHnadler, submitHandler, values } = useForm(initialValues, ({ comment }) => {
-        createComment(sunglassesId, comment)
+    const { changeHnadler, submitHandler, values } = useForm(initialValues, async ({ comment }) => {
+        try {
+            const newComment = await createComment(sunglassesId, comment)
+            setcomments(oldComments => [...oldComments, newComment]);
+        } catch (error) {
+            console.log(error.message);
 
+        }
     });
     return (
         <section id="details">
