@@ -13,10 +13,12 @@ export const getOne = (sunglassesId) => request.get(`${BASE_URL}/${sunglassesId}
 
 export const createSunglasses = (sunglassesData) => request.post(`${BASE_URL}`, sunglassesData);
 
+export const remove = (sunglassesId) => request.del(`${BASE_URL}/${sunglassesId}`);
 const sunglassesAPI = {
     getAll,
     getOne,
     createSunglasses,
+    remove,
 };
 
 export default sunglassesAPI;

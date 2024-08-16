@@ -1,14 +1,16 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetOneSunglasses } from "../../hooks/use-sunglasses.js";
 import { useForm } from "../../hooks/useForm.js";
 
 import { useCreateComments, useGetAllCommnets } from "../../hooks/useComments.js";
 import { useAuthContext } from "../../contexts/AuthContext.jsx";
+import sunglassesAPI from "../../api/sunglasess-api.js";
 
 const initialValues = {
     comment: '',
 }
 export default function Details() {
+    const navigate = useNavigate();
     const { sunglassesId } = useParams();
     const [comments, setcomments] = useGetAllCommnets(sunglassesId);
     const createComment = useCreateComments();
@@ -24,7 +26,15 @@ export default function Details() {
 
         }
     });
+    const sunglassesDeleteHandler = async () => {
+        try {
+            await sunglassesAPI.remove(sunglassesId)
+            navigate('/');
+        } catch (error) {
+            console.log(error.message);
 
+        }
+    }
     const isOwner = userId === sunglasses._ownerId;
     return (
         <section id="details">
@@ -45,7 +55,7 @@ export default function Details() {
                     {isOwner && (
                         <div id="action-buttons">
                             <a href="" id="edit-btn">Edit</a>
-                            <a href="" id="delete-btn">Delete</a>
+                            <a href="" onClick={sunglassesDeleteHandler} id="delete-btn">Delete</a>
                         </div>
                     )}
                 </div>
