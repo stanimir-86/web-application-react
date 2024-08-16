@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGetOneSunglasses } from "../../hooks/use-sunglasses.js";
 import { useForm } from "../../hooks/useForm.js";
 
@@ -27,6 +27,10 @@ export default function Details() {
         }
     });
     const sunglassesDeleteHandler = async () => {
+        const isConfirmed = confirm(`Are you sure you want to delete? ${sunglasses.brand}`)
+        if (!isConfirmed) {
+            return;
+        }
         try {
             await sunglassesAPI.remove(sunglassesId)
             navigate('/');
@@ -54,7 +58,7 @@ export default function Details() {
                     </div>
                     {isOwner && (
                         <div id="action-buttons">
-                            <a href="" id="edit-btn">Edit</a>
+                            <Link to={`/sunglasses/${sunglassesId}/edit`} id="edit-btn">Edit</Link>
                             <a href="" onClick={sunglassesDeleteHandler} id="delete-btn">Delete</a>
                         </div>
                     )}

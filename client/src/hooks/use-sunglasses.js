@@ -13,7 +13,16 @@ export function useGetAllSunglasses() {
 }
 
 export function useGetOneSunglasses(sunglassesId) {
-    const [sunglasses, setSunglasses] = useState({});
+    const [sunglasses, setSunglasses] = useState({
+
+        brand: '',
+        images: '',
+        price: '',
+        color: '',
+        model: '',
+        description: '',
+
+    });
 
     useEffect(() => {
         (async () => {
