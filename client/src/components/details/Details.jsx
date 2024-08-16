@@ -1,35 +1,23 @@
-import { useState } from "react"
 import { useParams } from "react-router-dom";
-
-import commentsApi from "../../api/comments-api.js";
 import { useGetOneSunglasses } from "../../hooks/use-sunglasses.js";
+import { useForm } from "../../hooks/useForm.js";
 
+import { useCreateComments, useGetAllCommnets } from "../../hooks/useComments.js";
+import { useAuthContext } from "../../contexts/AuthContext.jsx";
+
+const initialValues = {
+    comment: '',
+}
 export default function Details() {
     const { sunglassesId } = useParams();
-    const [sunglasses, setSunglasses] = useGetOneSunglasses(sunglassesId);
+    const [comments, setcomments] = useGetAllCommnets(sunglassesId);
+    const createComment = useCreateComments();
+    const [sunglasses] = useGetOneSunglasses(sunglassesId);
+    const { isAuthenticated } = useAuthContext();
+    const { changeHnadler, submitHandler, values } = useForm(initialValues, ({ comment }) => {
+        createComment(sunglassesId, comment)
 
-    const [username, setUsername] = useState('');
-    const [newComment, setNewComment] = useState('');
-
-
-
-    const commentSubmithandler = async (e) => {
-        e.preventDefault();
-
-        const resultComment = await commentsApi.create(sunglassesId, username, newComment)
-
-        setSunglasses(oldState => ({
-            ...prevState,
-            newComment: {
-                ...prevState.newComment,
-                [resultComment._id]: resultComment,
-            }
-        }));
-
-        setUsername('');
-        setNewComment('');
-
-    }
+    });
     return (
         <section id="details">
             <div id="details-wrapper">
@@ -40,13 +28,13 @@ export default function Details() {
                 <div id="info-wrapper">
                     <div id="details-description">
                         <p className="details-price">Price: €{sunglasses.price}</p>
-                        <p className="details-availability">{sunglasses.description}</p>
-                        <p className="type">Type: {sunglasses.brand}</p>
+                        <p className="details-availability">{sunglasses.color}</p>
+                        <p className="type">Type: {sunglasses.model}</p>
                         <p id="item-description">
                             {sunglasses.description}
                         </p>
                     </div>
-                    {/* Edit and Delete are only for creator */}
+
                     <div id="action-buttons">
                         <a href="" id="edit-btn">Edit</a>
                         <a href="" id="delete-btn">Delete</a>
@@ -56,36 +44,32 @@ export default function Details() {
                 <div className="item">
                     <h2>Comments:</h2>
                     <ul  >
-                        {Object.keys(sunglasses.newComment || {}).length > 0
-                            ? Object.values(sunglasses.newComment).map(x => (
-                                <li key={newComment._id} >
-                                    <p id="item-description">{newComment.username}:{x.text}</p>
-                                </li>
-                            ))
-                            : <p id="item-description" >No comments.</p>
+                        {comments.map(comment => (
+                            < li key={comment._id} >
+                                <p id="item-description">Username: {comment.text}</p>
+                            </li>
+                        ))
                         }
                     </ul>
-                </div>
-                <article className="item">
-                    <label className="item-info" >Add new comment</label>
-                    <form className="item-info" onSubmit={commentSubmithandler} >
-                        <input className="details-availability"
-                            type="text"
-                            placeholder="Name"
-                            name="username"
-                            onChange={(e) => setUsername(e.target.value)}
-                            value={username}
-                        />
-                        <textarea className="details-availability"
-                            name="comment"
-                            placeholder="Commnet..."
-                            onChange={(e) => setNewComment(e.target.value)}
-                            value={newComment}
 
-                        ></textarea>
-                        <input className="details-btn" type="submit" value='Add Comment' />
-                    </form>
-                </article>
+                    {comments.length === 0 && < p style={{ fontSize: '20px', color: 'red', textAlign: "center" }} >No comments.</p>}
+                </div>
+                {isAuthenticated && (
+                    <article className="item">
+                        <label className="item-info" >Add new comment</label>
+                        <form className="item-info" onSubmit={submitHandler} >
+
+                            <textarea className="details-availability"
+                                name="comment"
+                                placeholder="Commnet..."
+                                onChange={changeHnadler}
+                                value={values.comment}
+
+                            ></textarea>
+                            <input className="details-btn" type="submit" value='Add Comment' />
+                        </form>
+                    </article>
+                )}
             </div>
         </section >
     )

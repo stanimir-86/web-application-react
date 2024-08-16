@@ -1,22 +1,28 @@
 import requester from "./requester.js";
 
-const BASE_URL = 'http://localhost:3030/sunglasses';
-const buildUrl = (sunglassesId) => `${BASE_URL}/${sunglassesId}/comments`;
+const BASE_URL = 'http://localhost:3030/sunglasses/comments';
 
-const create = async (sunglassesId, username, text) => requester.post(buildUrl(sunglassesId), { username, text });
+// const buildUrl = (sunglassesId) => `${BASE_URL}/${sunglassesId}/comments`;
 
-const getAll = async (sunglassesId) => {
-    const result = await requester.get(buildUrl(sunglassesId));
-    const comments = Object.values(result);
-    return comments;
 
+const create = (sunglassesId, text) => requester.post(BASE_URL, { sunglassesId, text });
+
+const getAll = (sunglassesId) => {
+    const params = new URLSearchParams({
+        where: `sunglassesId="${sunglassesId}"`
+    });
+    return requester.get(`${BASE_URL}?${params.toString()}`);
 }
+
+
+
+
 
 
 const comentsAPI = {
     create,
     getAll,
-    
+
 }
 
 
