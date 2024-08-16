@@ -11,7 +11,7 @@ export function useGetAllCommnets(sunglassesId) {
     const [comments, setComments] = useState([]);
     (async () => {
         const result = await comentsAPI.getAll(sunglassesId);
-        console.log(result);
+
 
         setComments(result);
     })();

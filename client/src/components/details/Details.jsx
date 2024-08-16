@@ -12,6 +12,7 @@ export default function Details() {
     const { sunglassesId } = useParams();
     const [comments, setcomments] = useGetAllCommnets(sunglassesId);
     const createComment = useCreateComments();
+    const { email, userId } = useAuthContext();
     const [sunglasses] = useGetOneSunglasses(sunglassesId);
     const { isAuthenticated } = useAuthContext();
     const { changeHnadler, submitHandler, values } = useForm(initialValues, async ({ comment }) => {
@@ -23,6 +24,8 @@ export default function Details() {
 
         }
     });
+
+    const isOwner = userId === sunglasses._ownerId;
     return (
         <section id="details">
             <div id="details-wrapper">
@@ -39,11 +42,12 @@ export default function Details() {
                             {sunglasses.description}
                         </p>
                     </div>
-
-                    <div id="action-buttons">
-                        <a href="" id="edit-btn">Edit</a>
-                        <a href="" id="delete-btn">Delete</a>
-                    </div>
+                    {isOwner && (
+                        <div id="action-buttons">
+                            <a href="" id="edit-btn">Edit</a>
+                            <a href="" id="delete-btn">Delete</a>
+                        </div>
+                    )}
                 </div>
 
                 <div className="item">
