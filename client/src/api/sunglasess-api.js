@@ -17,12 +17,23 @@ export const remove = (sunglassesId) => request.del(`${BASE_URL}/${sunglassesId}
 
 export const update = (sunglassesId, sunglassesData) => request.put(`${BASE_URL}/${sunglassesId}`, sunglassesData)
 
+export const getLatest = async () => {
+    const urlSearchParams = new URLSearchParams({
+        sortBy: '_createdOn desc',
+        pageSize: 3,
+    });
+    const result = await request.get(`${BASE_URL}?${urlSearchParams.toString()}`);
+    const latestSunglasses = Object.values(result);
+
+    return latestSunglasses
+}
 const sunglassesAPI = {
     getAll,
     getOne,
     createSunglasses,
     remove,
     update,
+    getLatest,
 };
 
 export default sunglassesAPI;

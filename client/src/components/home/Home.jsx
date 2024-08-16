@@ -4,14 +4,14 @@ import LatestSunglasses from "./latest-sunglasses/LatestSunglasses.jsx";
 
 
 export default function Home() {
-    const [latestSunglasses, setLatstSunglasses] = useState([]);
+    const [latestSunglasses, setLatestSunglasses] = useState([]);
     useEffect(() => {
         (async () => {
-            const result = await sunglassesAPI.getAll();
+            const result = await sunglassesAPI.getLatest();
 
-            setLatstSunglasses(result.reverse().slice(0, 3))
+            setLatestSunglasses(result)
         })();
-    });
+    }, []);
 
     return (
         <section id="hero">
