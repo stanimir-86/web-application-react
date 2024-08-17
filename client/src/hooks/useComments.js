@@ -9,14 +9,16 @@ export function useCreateComments() {
 
 export function useGetAllCommnets(sunglassesId) {
     const [comments, setComments] = useState([]);
-    (async () => {
-        const result = await comentsAPI.getAll(sunglassesId);
-
-
-        setComments(result);
-    })();
+    
     useEffect(() => {
+        (async () => {
+            const result = await comentsAPI.getAll(sunglassesId);
 
+
+            setComments(result);
+        })();
     }, [sunglassesId]);
+
+
     return [comments, setComments];
 }

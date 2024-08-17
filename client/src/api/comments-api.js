@@ -1,10 +1,6 @@
 import requester from "./requester.js";
 
-const BASE_URL = 'http://localhost:3030/sunglasses/comments';
-// const BASE_URL = 'http://localhost:3030/data/comments';
-
-// const buildUrl = (sunglassesId) => `${BASE_URL}/${sunglassesId}/comments`;
-
+const BASE_URL = 'http://localhost:3030/data/comments';
 
 const create = (sunglassesId, text) => requester.post(BASE_URL, { sunglassesId, text });
 

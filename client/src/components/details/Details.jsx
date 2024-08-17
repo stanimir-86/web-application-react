@@ -14,10 +14,14 @@ export default function Details() {
     const { sunglassesId } = useParams();
     const [comments, setcomments] = useGetAllCommnets(sunglassesId);
     const createComment = useCreateComments();
-    const { email, userId } = useAuthContext();
+    const { userId } = useAuthContext();
     const [sunglasses] = useGetOneSunglasses(sunglassesId);
     const { isAuthenticated } = useAuthContext();
-    const { changeHnadler, submitHandler, values } = useForm(initialValues, async ({ comment }) => {
+    const {
+        changeHnadler,
+        submitHandler,
+        values
+    } = useForm(initialValues, async ({ comment }) => {
         try {
             const newComment = await createComment(sunglassesId, comment)
             setcomments(oldComments => [...oldComments, newComment]);

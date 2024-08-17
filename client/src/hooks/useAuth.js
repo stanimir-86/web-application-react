@@ -39,8 +39,8 @@ export const useLogout = () => {
 
     const logoutHandler = async () => {
 
-        await logout();
         localLogout();
+        await logout();
 
         // changeAuthState(authData);
 
