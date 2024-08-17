@@ -31,6 +31,6 @@ export function useForm(initialValues, submitCallback, options = { reinitializaF
         values,
         changeHnadler,
         submitHandler,
-
+        reinitializaForm,
     };
 };

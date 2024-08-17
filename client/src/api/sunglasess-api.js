@@ -6,7 +6,7 @@ const BASE_URL = 'http://localhost:3030/data/sunglasses';
 export const getAll = async () => {
     const result = await request.get(BASE_URL);
     return result;
-   
+
 }
 export const getOne = (sunglassesId) => request.get(`${BASE_URL}/${sunglassesId}`);
 
@@ -18,7 +18,7 @@ export const update = (sunglassesId, sunglassesData) => request.put(`${BASE_URL}
 
 export const getLatest = async () => {
     const urlSearchParams = new URLSearchParams({
-        sortBy: '_createdOn desc',
+        sortBy: `_createdOn desc`,
         pageSize: 3,
     });
     const result = await request.get(`${BASE_URL}?${urlSearchParams.toString()}`);

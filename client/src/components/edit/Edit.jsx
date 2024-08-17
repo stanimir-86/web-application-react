@@ -22,14 +22,14 @@ export default function Edit() {
             navigate(`/sunglasses/${sunglassesId}/details`);
 
         }
-    }, { reinitializaForm: true });
+    }, { reinitializaForm: false });
 
 
 
     return (
         <section id="edit">
             <div className="form form-item">
-                <h2>Edit Your Sunglasses</h2>
+                <h2>Edit Sunglasses</h2>
                 <form className="edit-form" onSubmit={submitHandler}>
                     <input onChange={changeHnadler} value={values.brand} type="text" name="brand" id="item" placeholder="brand" />
                     <input onChange={changeHnadler} value={values.images} type="text" name="images" id="item-image" placeholder="Your sunglasses Image URL" />

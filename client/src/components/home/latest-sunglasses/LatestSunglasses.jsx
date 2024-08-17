@@ -7,20 +7,20 @@ export default function LatestSunglasses({
     description,
     model,
     brand,
+    color,
 }) {
-    const imageUrl = images && images.length > 0 ? images[0].url : '';
+
 
     return (
 
         <div className="item">
-            {imageUrl ? (
-                <img src={imageUrl} alt="sunglassesImage" />
-            ) : (
-                <p>No image available</p>
-            )}
+
+            <img src={images} alt="sunglassesImage" />
+
             <h3 className="model">{model}</h3>
             <div className="item-info">
                 <p className="price">Price: €{price}</p>
+                <p className="price">Color: {color}</p>
                 <p className="availability">
                     {description}
                 </p>
