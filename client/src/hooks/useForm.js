@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 
-export function useForm(initialValues, submitCallback, options = { reinitializaForm: false }) {
+export function useForm(initialValues, submitCallback, reinitializaForm = false) {
 
     const [values, setValues] = useState(initialValues);
 
     useEffect(() => {
-        if (options.reinitializaForm) {
+        if (reinitializaForm) {
             setValues(initialValues);
         }
 
-    }, [initialValues, options]);
+    }, [initialValues, reinitializaForm]);
 
-    const reinitializaForm = () => {
-        setValues(initialValues);
-    }
+    // const reinitializaForm = () => {
+    //     setValues(initialValues);
+    // }
 
     const changeHnadler = (e) => {
         setValues(state => ({
@@ -31,6 +31,6 @@ export function useForm(initialValues, submitCallback, options = { reinitializaF
         values,
         changeHnadler,
         submitHandler,
-        reinitializaForm,
+        
     };
 };

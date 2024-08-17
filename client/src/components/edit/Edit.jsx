@@ -37,7 +37,7 @@ export default function Edit() {
 
         }
 
-    }, { reinitializaForm: false });
+    }, true);
 
 
 
