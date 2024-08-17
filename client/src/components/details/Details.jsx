@@ -14,7 +14,7 @@ export default function Details() {
     const { sunglassesId } = useParams();
     const [comments, setcomments] = useGetAllCommnets(sunglassesId);
     const createComment = useCreateComments();
-    const { userId } = useAuthContext();
+    const { email, userId } = useAuthContext();
     const [sunglasses] = useGetOneSunglasses(sunglassesId);
     const { isAuthenticated } = useAuthContext();
     const {
@@ -31,7 +31,7 @@ export default function Details() {
         }
     });
     const sunglassesDeleteHandler = async () => {
-        const isConfirmed = confirm(`Are you sure you want to delete? ${sunglasses.brand}`)
+        const isConfirmed = confirm(`Are you sure you want to delete? ${sunglasses.brand} sunglasses?`)
         if (!isConfirmed) {
             return;
         }
