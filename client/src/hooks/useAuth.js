@@ -41,7 +41,8 @@ export const useLogout = () => {
 
         await logout();
         localLogout();
-        changeAuthState(authData);
+
+        // changeAuthState(authData);
 
     }
 
