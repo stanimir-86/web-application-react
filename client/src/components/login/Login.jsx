@@ -1,22 +1,29 @@
 import { useNavigate } from 'react-router-dom';
-
+import { useState } from 'react';
 import { useLogin } from "../../hooks/useAuth.js";
 import { useForm } from "../../hooks/useForm.js";
 
 const initialValues = { email: '', password: '' };
 
 export default function Login() {
+    const [error, setError] = useState('');
     const login = useLogin();
     const navigate = useNavigate()
 
     const loginHandler = async ({ email, password }) => {
-
+        if (!email) {
+            return setError('Email is required');
+        }
+        if (!password) {
+            return setError('Password is required');
+        }
         try {
             await login(email, password)
             navigate('/');
 
         } catch (err) {
-            console.log(err.message);
+            setError(err.message);
+
 
         }
 
@@ -47,6 +54,12 @@ export default function Login() {
                         onChange={changeHnadler}
                         placeholder="password"
                     />
+
+                    {error && (
+                        <p>
+                            <span style={{ fontSize: '18px', color: 'red', textAlign: "center" }}>{error}</span>
+                        </p>
+                    )}
                     <button type="submit">login</button>
                     <p className="message">
                         Not registered? <a href="#">Create an account</a>
