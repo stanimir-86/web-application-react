@@ -12,12 +12,12 @@ export default function Header() {
             </Link>
             <nav>
                 <div>
-                    <Link to="/dashboard">Market</Link>
+                    <Link to="/sunglasses">Market</Link>
                 </div>
                 {isAuthenticated
                     ? (
                         <div className="user">
-                            <Link to="/create">Sell</Link>
+                            <Link to="/sunglasses/create">Sell</Link>
                             <Link to="/logout">Logout</Link>
                         </div>
                     )

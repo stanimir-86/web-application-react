@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import * as sunglassesAPI from '../api/sunglasess-api.js'
-export function useGetAllSunglasses() {
 
+export function useGetAllSunglasses() {
     const [sunglasses, setSunglasses] = useState([]);
+
 
     useEffect(() => {
         sunglassesAPI.getAll()

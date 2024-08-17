@@ -19,8 +19,6 @@ import AuthRouteGuard from './components/common/AuthRouteGuard.jsx';
 import AuthPrivateGuard from './components/common/AuthPrivateGuard.jsx';
 
 function App() {
-
-
   return (
     <AuthContextProvider >
       <Router>
@@ -32,11 +30,11 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/sunglasses" element={<Dashboard />} />
               <Route path="/sunglasses/:sunglassesId/details" element={<Details />} />
               {/* <Route path="/create" element={<AuthRouteGuard>< Create /></AuthRouteGuard>} /> */}
               <Route element={<AuthPrivateGuard />}>
-                <Route path='/create' element={<Create />} />
+                <Route path='/sunglasses/create' element={<Create />} />
                 <Route path="/sunglasses/:sunglassesId/edit" element={<Edit />} />
                 <Route path="/logout" element={<Logout />} />
               </Route>
