@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useCreateSunglasses } from "../../hooks/use-sunglasses.js"
 import { useForm } from "../../hooks/useForm.js"
+import { useState } from 'react'
 const initialValues = {
     brand: '',
     images: '',
@@ -11,16 +12,26 @@ const initialValues = {
 }
 
 export default function Create() {
+    const [error, setError] = useState('');
+
     const navigate = useNavigate();
     const createSunglasses = useCreateSunglasses();
 
     const createHandler = async (values) => {
+
+        if (!values.brand || !values.images || !values.price || !values.color ||
+            !values.color || !values.model || !values.description
+        ) {
+            return setError('Please fill form data!');
+        }
+
         try {
             const { _id: sunglassesId } = await createSunglasses(values);
             navigate(`/sunglasses/${sunglassesId}/details`);
 
         } catch (err) {
-            console.log(err.message);
+            setError(err.message);
+
 
         }
 
@@ -40,6 +51,11 @@ export default function Create() {
                     <input type="text" name="color" id="availability" value={values.color} onChange={changeHnadler} placeholder="Color Information" />
                     <input type="text" name="model" id="type" value={values.model} onChange={changeHnadler} placeholder="Sunglasses model" />
                     <textarea id="description" name="description" value={values.description} onChange={changeHnadler} placeholder="More About The Item" rows="10" cols="50"></textarea>
+                    {error && (
+                        <p>
+                            <span style={{ fontSize: '20px', color: 'red', textAlign: "center" }}>{error}</span>
+                        </p>
+                    )}
                     <button type="submit">Add</button>
                 </form>
             </div>
