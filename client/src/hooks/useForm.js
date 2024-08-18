@@ -11,10 +11,6 @@ export function useForm(initialValues, submitCallback, reinitializaForm = false)
 
     }, [initialValues, reinitializaForm]);
 
-    // const reinitializaForm = () => {
-    //     setValues(initialValues);
-    // }
-
     const changeHnadler = (e) => {
         setValues(state => ({
             ...state,
